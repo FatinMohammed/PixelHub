@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - PixelHub</title>
+  <style>
+    body { background:#1a1a1a; font-family: cursive; color:bisque; display:flex; justify-content:center; align-items:center; height:100vh; }
+    #checkoutFormContainer { width: 400px; height: auto; box-shadow: 0 0 50px bisque ; border-radius: 20px; padding: 40px; }
+    h4 { text-align:center; color:bisque; margin-bottom:20px; font-size: 28px; }
+    input, select { width:100%; padding:8px; margin-bottom:12px; border:none; border-radius:5px; }
+    button { width:100%; padding:10px; border:none; border-radius:5px; background:rgba(130, 43, 43, 0.9); color:bisque; font-weight:bold; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div id="checkoutFormContainer">
+    <h4>Payment Information</h4>
+    <label>Full Name:</label>
+    <input type="text" id="checkoutName" required>
+    <label>Address:</label>
+    <input type="text" id="checkoutAddress" required>
+    <label>Phone:</label>
+    <input type="text" id="checkoutPhone" required>
+
+    <label>Discount Coupon:</label>
+    <input type="text" id="checkoutCoupon" placeholder="Enter coupon code">
+    <label>Payment Method:</label>
+    <select id="checkoutPayment">
+      <option value="Apple Pay">Apple Pay</option>
+      <option value="Cash on Delivery">Cash on Delivery</option>
+      <option value="Credit Card">Credit Card</option>
+    </select>
+    <button id="submitOrderBtn">Confirm Payment</button>
+  </div>
+
+  <script>
+    document.getElementById("submitOrderBtn").addEventListener("click", () => {
+      const name = document.getElementById("checkoutName").value;
+      const address = document.getElementById("checkoutAddress").value;
+      const phone = document.getElementById("checkoutPhone").value;
+      const payment = document.getElementById("checkoutPayment").value;
+      const coupon = document.getElementById("checkoutCoupon").value;
+
+      const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+      if(cart.length === 0){
+        alert("🛒 Your cart is empty!");
+        return;
+      }
+
+      let total = 0;
+      cart.forEach(item => total += item.price * item.quantity);
+
+      fetch("http://localhost/PixelHub2/save_order.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, address, phone, payment, coupon, total })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          alert("✅ Payment Successful! Redirecting to store...");
+          localStorage.removeItem("cartItems"); 
+          window.location.href = "index.html";   
+        } else {
+          alert("❌ Error saving order: " + data.message);
+        }
+      })
+      .catch(err => console.error("Error:", err));
+    });
+  </script>
+</body>
+</html>

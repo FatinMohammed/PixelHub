@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: cursive !important;
+  background-color: #1a1a1a !important;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23212121" fill-opacity="1" d="M0,192L60,192C120,192,240,192,360,176C480,160,600,128,720,138.7C840,149,960,203,1080,229.3C1200,256,1320,256,1380,256L1440,256L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom;
+  color: bisque !important;
+}
+
+.navbar {
+  background-color: #2a2a2a;
+  padding: 10px 0;
+}
+.navbar img {
+  width: 100px;
+  height: 120px;
+}
+.navbar-items {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.navbar-items li button {
+  background: none;
+  border: none;
+  color: bisque !important;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 40px 0;
+  text-align: center;
+}
+
+#cartSidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #2a2a2a;
+  color: bisque;
+  overflow-y: auto;
+  transition: right 0.3s;
+  z-index: 1000;
+  padding: 20px;
+}
+#cartSidebar h2,
+#cartSidebar h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+#cartCloseBtn {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: rgba(130, 43, 43, 0.9);
+  color: bisque;
+  border: none;
+  cursor: pointer;
+}
+#cartCloseBtn:hover {
+  background-color: rgba(99, 41, 41, 0.8);
+}
+
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 7px;
+  border-radius: 50%;
+}
+
+#cartIcon {
+  position: relative;
+}
+
+#cartItems button {
+  background-color: rgba(130, 43, 43, 0.9);
+  color: bisque;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: cursive;
+  margin-top: 5px;
+  transition: 0.3s;
+}
+
+#cartItems button:hover {
+  background-color: rgba(99, 41, 41, 0.8);
+}
+
+#games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 60px;
+  margin: 20px;
+}
+
+.game-card {
+  flex: 0 0 30%;
+  background-color: #2a2a2a !important;
+  color: bisque !important;
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 0 40px bisque;
+}
+
+.game-card img {
+  width: 100%;
+  height: 570px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-card .price {
+  font-weight: bold;
+}
+.game-card button {
+  display: block;
+  width: 50%;
+  padding: 8px 0;
+  margin: 15px auto 10px auto; /* 15px فوق، 10px تحت */
+  background-color: rgba(130, 43, 43, 0.9);
+  border: none;
+  color: bisque;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.game-card button:hover {
+  background-color: rgba(99, 41, 41, 0.8);
+  transform: scale(1.05);
+}
+
+.game-card h3,
+.card p,
+.card .price {
+  margin: 5px 0;
+}
